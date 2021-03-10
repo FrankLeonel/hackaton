@@ -2,7 +2,6 @@ package br.ufc.hackathon.hackathon.service;
 
 import java.util.List;
 
-import org.hibernate.hql.internal.ast.tree.QueryNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,7 +49,7 @@ public class ProdutoService {
 
             produtoRepository.save(produto);
         }
-        System.out.println(produto.toString());
+
         return produto;
     }
 }
