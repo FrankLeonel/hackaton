@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import br.ufc.hackathon.hackathon.model.Agricultor;
 import br.ufc.hackathon.hackathon.service.AgricultorService;
 
-@CrossOrigin(origins = "localhost:8080")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/api/agricultores")
 public class AgricultorController {
