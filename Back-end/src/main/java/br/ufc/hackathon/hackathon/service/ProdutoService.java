@@ -1,49 +1,48 @@
 package br.ufc.hackathon.hackathon.service;
 
 import java.util.List;
- 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.ufc.hackathon.hackathon.model.Produto;
 import br.ufc.hackathon.hackathon.repository.ProdutoRepository;
- 
+
 @Service
 public class ProdutoService {
- 
+
     @Autowired
-    ProdutoRepository proRepo;
-    
-    public Produto addUser(String nome, Integer quantidade, Double preco) {
+    ProdutoRepository produtoRespository;
+
+    public Produto addProduto(String nome, Integer quantidade, Double preco) {
         Produto produto = new Produto(nome, quantidade, preco);
-        return proRepo.save(produto);
+        return produtoRespository.save(produto);
     }
-    
-    public boolean removeUser(Integer id) {
-        if(proRepo.existsById(id)) {
-            proRepo.deleteById(id);
+
+    public boolean removeProduto(Integer id) {
+        if (produtoRespository.existsById(id)) {
+            produtoRespository.deleteById(id);
             return true;
         }
-        
+
         return false;
     }
-    
-    public List<Produto> getUsers() {
-        return proRepo.findAll();
+
+    public List<Produto> getProdutos() {
+        return produtoRespository.findAll();
     }
-    
+
     public Produto getProduto(Integer id) {
-        return proRepo.findById(id).get();
+        return produtoRespository.findById(id).get();
     }
-    
-    public Produto getUserByLogin(String nome) {
-        return proRepo.findFirstByNome(nome);
+
+    public Produto getProdutoByLogin(String nome) {
+        return produtoRespository.findFirstByNome(nome);
     }
-    
-    public Produto updateUser(Integer id, String nome, Integer quantidade, Double preco) {
-        Produto proAux = proRepo.findById(id).get();
-       
+
+    public Produto updateProduto(Integer id, String nome, Integer quantidade, Double preco) {
+        Produto proAux = produtoRespository.findById(id).get();
+
         return proAux;
     }
 }
-

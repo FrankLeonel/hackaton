@@ -1,55 +1,57 @@
 package br.ufc.hackathon.hackathon.service;
 
 import java.util.List;
- 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.ufc.hackathon.hackathon.model.Comerciante;
 import br.ufc.hackathon.hackathon.repository.ComercianteRepository;
- 
+
 @Service
 public class ComercianteService {
- 
+
     @Autowired
-    ComercianteRepository comerRepo;
-    
-    public Comerciante addUser(String login, String senha, String nome, String endereco, String itens, String email) {
+    ComercianteRepository comercianteRepository;
+
+    public Comerciante addComerciante(String login, String senha, String nome, String endereco, String itens,
+            String email) {
         Comerciante comerciante = new Comerciante(login, senha, nome, endereco, itens, email);
-        return comerRepo.save(comerciante);
+        return comercianteRepository.save(comerciante);
     }
-    
-    public boolean removeUser(Integer id) {
-        if(comerRepo.existsById(id)) {
-            comerRepo.deleteById(id);
+
+    public boolean removeComerciante(Integer id) {
+        if (comercianteRepository.existsById(id)) {
+            comercianteRepository.deleteById(id);
             return true;
         }
-        
+
         return false;
     }
-    
-    public List<Comerciante> getUsers() {
-        return comerRepo.findAll();
+
+    public List<Comerciante> getComerciantes() {
+        return comercianteRepository.findAll();
     }
-    
+
     public Comerciante getComerciante(Integer id) {
-        return comerRepo.findById(id).get();
+        return comercianteRepository.findById(id).get();
     }
-    
-    public Comerciante getUserByLogin(String login) {
-        return comerRepo.findFirstByLogin(login);
+
+    public Comerciante getComercianteByLogin(String login) {
+        return comercianteRepository.findFirstByLogin(login);
     }
-    
-    public Comerciante updateUser(Integer id, String login, String senha, String nome, String endereco, String itens, String email) {
-        Comerciante comerAux = comerRepo.findById(id).get();
-        
-        if(comerAux != null) {
-            comerAux.setLogin(login);;
+
+    public Comerciante updateComerciante(Integer id, String login, String senha, String nome, String endereco,
+            String itens, String email) {
+        Comerciante comerAux = comercianteRepository.findById(id).get();
+
+        if (comerAux != null) {
+            comerAux.setLogin(login);
+            ;
             comerAux.setSenha(senha);
-            comerRepo.save(comerAux);         
+            comercianteRepository.save(comerAux);
         }
-        
+
         return comerAux;
     }
 }
-
