@@ -2,6 +2,7 @@ package br.ufc.hackathon.hackathon.service;
 
 import java.util.List;
 
+import org.hibernate.hql.internal.ast.tree.QueryNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,16 +13,16 @@ import br.ufc.hackathon.hackathon.repository.ProdutoRepository;
 public class ProdutoService {
 
     @Autowired
-    ProdutoRepository produtoRespository;
+    ProdutoRepository produtoRepository;
 
     public Produto addProduto(String nome, Integer quantidade, Double preco) {
         Produto produto = new Produto(nome, quantidade, preco);
-        return produtoRespository.save(produto);
+        return produtoRepository.save(produto);
     }
 
     public boolean removeProduto(Integer id) {
-        if (produtoRespository.existsById(id)) {
-            produtoRespository.deleteById(id);
+        if (produtoRepository.existsById(id)) {
+            produtoRepository.deleteById(id);
             return true;
         }
 
@@ -29,20 +30,27 @@ public class ProdutoService {
     }
 
     public List<Produto> getProdutos() {
-        return produtoRespository.findAll();
+        return produtoRepository.findAll();
     }
 
     public Produto getProduto(Integer id) {
-        return produtoRespository.findById(id).get();
+        return produtoRepository.findById(id).get();
     }
 
     public Produto getProdutoByLogin(String nome) {
-        return produtoRespository.findFirstByNome(nome);
+        return produtoRepository.findFirstByNome(nome);
     }
 
     public Produto updateProduto(Integer id, String nome, Integer quantidade, Double preco) {
-        Produto proAux = produtoRespository.findById(id).get();
+        Produto produto = produtoRepository.findById(id).get();
+        if (produto != null) {
+            produto.setNome(nome);
+            produto.setPreco(preco);
+            produto.setQuantidade(quantidade);
 
-        return proAux;
+            produtoRepository.save(produto);
+        }
+        System.out.println(produto.toString());
+        return produto;
     }
 }

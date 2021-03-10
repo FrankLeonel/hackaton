@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-HackathonApplication<hackathon>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "br.ufc.hackathon.hackathon.HackathonApplication",
+            "projectName": "hackathon",
+            "args": ""
+        }
+    ]
+}

@@ -43,15 +43,18 @@ public class AgricultorService {
 
     public Agricultor updateAgricultor(Integer id, String login, String senha, String nome, String endereco,
             String itens, String email) {
-        Agricultor agriAux = agricultorRepository.findById(id).get();
+        Agricultor agricultor = agricultorRepository.findById(id).get();
 
-        if (agriAux != null) {
-            agriAux.setLogin(login);
-            ;
-            agriAux.setSenha(senha);
-            agricultorRepository.save(agriAux);
+        if (agricultor != null) {
+            agricultor.setLogin(login);
+            agricultor.setSenha(senha);
+            agricultor.setNome(nome);
+            agricultor.setEndereco(endereco);
+            agricultor.setItens(itens);
+            agricultor.setEmail(email);
+            agricultorRepository.save(agricultor);
         }
 
-        return agriAux;
+        return agricultor;
     }
 }

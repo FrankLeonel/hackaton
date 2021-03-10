@@ -33,47 +33,39 @@ public class AgricultorController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Agricultor> addAgricultor(@RequestBody Agricultor newAgricultor) {
 
-        if (newAgricultor.getLogin() == null ||
-                newAgricultor.getNome() == null ||
-                newAgricultor.getEmail() == null ||
-                newAgricultor.getSenha() == null ||
-                newAgricultor.getEndereco() == null ||
-                newAgricultor.getItens() == null ||
-                newAgricultor.getNome().equals("null") ||
-                newAgricultor.getEmail().equals("null") ||
-                newAgricultor.getSenha().equals("null") ||
-                newAgricultor.getEndereco().equals("null")) {
+        if (newAgricultor.getLogin() == null || newAgricultor.getNome() == null || newAgricultor.getEmail() == null
+                || newAgricultor.getSenha() == null || newAgricultor.getEndereco() == null
+                || newAgricultor.getItens() == null || newAgricultor.getNome().equals("null")
+                || newAgricultor.getEmail().equals("null") || newAgricultor.getSenha().equals("null")
+                || newAgricultor.getEndereco().equals("null")) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<Agricultor>(agricultorService.addAgricultor(newAgricultor.getLogin(),
-                newAgricultor.getSenha(), newAgricultor.getNome(), newAgricultor.getEndereco(), newAgricultor.getItens(), newAgricultor.getEmail()), HttpStatus.OK);
+                newAgricultor.getSenha(), newAgricultor.getNome(), newAgricultor.getEndereco(),
+                newAgricultor.getItens(), newAgricultor.getEmail()), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "{id}")
-    public ResponseEntity<Agricultor> updateAgricultor(@PathVariable("id") Integer id, @RequestBody Agricultor agricultor) {
+    public ResponseEntity<Agricultor> updateAgricultor(@PathVariable("id") Integer id,
+            @RequestBody Agricultor agricultor) {
 
-        if (agricultor.getLogin() == null ||
-                agricultor.getNome() == null ||
-                agricultor.getEmail() == null ||
-                agricultor.getSenha() == null ||
-                agricultor.getEndereco() == null ||
-                agricultor.getItens() == null ||
-                agricultor.getNome().equals("null") ||
-                agricultor.getEmail().equals("null") ||
-                agricultor.getSenha().equals("null") ||
-                agricultor.getEndereco().equals("null")){
+        if (agricultor.getLogin() == null || agricultor.getNome() == null || agricultor.getEmail() == null
+                || agricultor.getSenha() == null || agricultor.getEndereco() == null || agricultor.getItens() == null
+                || agricultor.getNome().equals("null") || agricultor.getEmail().equals("null")
+                || agricultor.getSenha().equals("null") || agricultor.getEndereco().equals("null")) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<Agricultor>(agricultorService.updateAgricultor(agricultor.getId(), agricultor.getLogin(),
-                agricultor.getSenha(), agricultor.getNome(), agricultor.getEndereco(), agricultor.getItens(), agricultor.getEmail()), HttpStatus.OK);
+        return new ResponseEntity<Agricultor>(
+                agricultorService.updateAgricultor(agricultor.getId(), agricultor.getLogin(), agricultor.getSenha(),
+                        agricultor.getNome(), agricultor.getEndereco(), agricultor.getItens(), agricultor.getEmail()),
+                HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "{id}")

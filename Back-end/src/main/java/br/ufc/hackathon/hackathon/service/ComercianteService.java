@@ -43,15 +43,18 @@ public class ComercianteService {
 
     public Comerciante updateComerciante(Integer id, String login, String senha, String nome, String endereco,
             String itens, String email) {
-        Comerciante comerAux = comercianteRepository.findById(id).get();
+        Comerciante comerciante = comercianteRepository.findById(id).get();
 
-        if (comerAux != null) {
-            comerAux.setLogin(login);
-            ;
-            comerAux.setSenha(senha);
-            comercianteRepository.save(comerAux);
+        if (comerciante != null) {
+            comerciante.setLogin(login);
+            comerciante.setSenha(senha);
+            comerciante.setNome(nome);
+            comerciante.setEndereco(endereco);
+            comerciante.setEmail(email);
+
+            comercianteRepository.save(comerciante);
         }
 
-        return comerAux;
+        return comerciante;
     }
 }
